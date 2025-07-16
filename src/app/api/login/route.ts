@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import prisma from '@/lib/prisma'; // 👉 ini versi yang sudah dirapikan
-import { createHash } from 'crypto';
+// import { createHash } from 'crypto';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret';
 
@@ -29,11 +29,11 @@ export async function POST(req: Request) {
       { expiresIn: '7d' }
     );
 
-    const hashedName = createHash('sha256').update(user.name).digest('hex').slice(0, 12);
+    //const hashedName = createHash('sha256').update(user.name).digest('hex').slice(0, 12);
 
     const response = NextResponse.json({
       message: 'Login successful',
-      user: { id: user.id, name: hashedName, email: user.email },
+      user: { id: user.id, name: user.name, email: user.email },
     });
 
     response.cookies.set({

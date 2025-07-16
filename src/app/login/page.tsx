@@ -14,23 +14,25 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/login', {
+      const reso = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'same-origin', // penting agar cookie diikutkan
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await res.json();
+      const data = await reso.json();
 
-      if (!res.ok) {
+      if (!reso.ok) {
         setMessage(data.error || 'Login failed');
       } else {
+        console.log("ini data", JSON.stringify(data));
         // jika berhasil login maka localstorage,message,direct to dasboard user
-        localStorage.setItem('currentUserId',data.user.id);
-        localStorage.setItem('currentUserName',data.user.name);
-        setMessage(`Welcome, ${data.user.name}`);
-        window.location.href = '/dasboard/users'; // pakai folder sesuai milikmu
+        //localStorage.setItem('currentUserId',data.user.id);
+        //localStorage.setItem('currentUserName',data.user.name);
+        //setMessage(`Welcome, ${data.user.name}`);
+        setMessage(`Welcome, ${JSON.stringify(data) }`);
+        window.location.href = '/dashboard/users'; // pakai folder sesuai milikmu
       }
     } catch (err) {
       setMessage('Failed to connect to server');

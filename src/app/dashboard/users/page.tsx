@@ -1,28 +1,59 @@
 "use client";
 
+import { publisherOptions } from "@/app/hooks/publisherOptions";
+import { subscriberOptions } from "@/app/hooks/subscriberOptions";
+import { useDeviceManager } from "@/app/hooks/useDeviceManager";
 import NavbarUser from "@/component/NavbarUser/page";
 import React from "react";
 
-
 export default function UsersDashboard() {
-  
+  const { view, setView } = useDeviceManager();
   return (
     <div className="min-h-screen bg-amber-50">
       <NavbarUser />
       <main className="p-6">
-        <div className="space-x-4 mb-4">
-          <button
-            className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-green-500"
-            onClick={()=>alert("ini tombol add subscriber sudah ditekan")}
-          >
-            Add Subscriber
-          </button>
-          <button
-            className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-green-500"
-            onClick={()=>alert("ini tombol add publisher sudah ditekan")}
-          >
-            Add Publisher
-          </button>
+        {!view && (
+          <div className="space-x-4 mb-4">
+            <button
+              className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-green-500"
+              onClick={() => setView("subscriber")}
+            >
+              Add Subscriber
+            </button>
+            <button
+              className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-green-500"
+              onClick={() => setView("publisher")}
+            >
+              Add Publisher
+            </button>
+          </div>
+        )}
+        {view === "subscriber" && (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
+            {subscriberOptions.map((option) => (
+              <button
+                key={option}
+                className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+        {view === "publisher" && (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
+            {publisherOptions.map((option) => (
+              <button
+                key={option}
+                className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+        <div>
+          <p>ini view: {view}</p>
         </div>
       </main>
     </div>

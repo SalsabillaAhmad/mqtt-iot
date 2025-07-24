@@ -34,10 +34,17 @@ export default function UsersDashboard() {
               <button
                 key={option}
                 className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
+                // onClick={() => setView(null)}
               >
                 {option}
               </button>
             ))}
+            <button
+              className="px-4 py-2 border border-gray-400 hover:border-gray-200 col-span-full"
+              onClick={() => setView(null)}
+            >
+              Kembali
+            </button>
           </div>
         )}
         {view === "publisher" && (
@@ -46,10 +53,17 @@ export default function UsersDashboard() {
               <button
                 key={option}
                 className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
+                onClick={() => setView(null)}
               >
                 {option}
               </button>
             ))}
+            <button
+              className="px-4 py-2 border border-gray-400 hover:border-gray-200 col-span-full"
+              onClick={() => setView(null)}
+            >
+              Kembali
+            </button>
           </div>
         )}
         <div>

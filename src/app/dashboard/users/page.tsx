@@ -7,7 +7,14 @@ import NavbarUser from "@/component/NavbarUser/page";
 import React from "react";
 
 export default function UsersDashboard() {
-  const { view, setView } = useDeviceManager();
+  const {
+    view,
+    setView,
+    selectedSubscriber,
+    setSelectedSubscriber,
+    selectedPublisher,
+    setSelectedPublisher,
+  } = useDeviceManager();
   return (
     <div className="min-h-screen bg-amber-50">
       <NavbarUser />
@@ -34,7 +41,7 @@ export default function UsersDashboard() {
               <button
                 key={option}
                 className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
-                // onClick={() => setView(null)}
+                onClick={() => setSelectedSubscriber(option)}
               >
                 {option}
               </button>
@@ -53,7 +60,7 @@ export default function UsersDashboard() {
               <button
                 key={option}
                 className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
-                onClick={() => setView(null)}
+                onClick={() => setSelectedPublisher(option)}
               >
                 {option}
               </button>
@@ -66,8 +73,10 @@ export default function UsersDashboard() {
             </button>
           </div>
         )}
-        <div>
-          <p>ini view: {view}</p>
+        <div
+        className="bg-purple-400">
+          <p>ini selectedSubscriber: {selectedSubscriber}</p>
+          <p>ini selectedPublisher: {selectedPublisher}</p>
         </div>
       </main>
     </div>

@@ -1,11 +1,12 @@
 "use client";
 
 import { publisherOptions } from "@/app/hooks/publisherOptions";
-import { subscriberOptions } from "@/app/hooks/subscriberOptions";
 import { useDeviceManager } from "@/app/hooks/useDeviceManager";
 import NavbarUser from "@/component/NavbarUser/page";
 import React from "react";
-import AddButtons from "@/component/AddButtons";
+import AddButtons from "@/component/ui/AddButtons";
+import ButtonSubscriber from "@/component/ui/ButtonsSubscriber";
+
 
 export default function UsersDashboard() {
   const {
@@ -24,23 +25,7 @@ export default function UsersDashboard() {
       <AddButtons setView={setView}/>
         )}
         {view === "subscriber" && (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
-            {subscriberOptions.map((option) => (
-              <button
-                key={option}
-                className="px-4 bg-green-400 text-white rounded hover:bg-green-600"
-                onClick={() => setSelectedSubscriber(option)}
-              >
-                {option}
-              </button>
-            ))}
-            <button
-              className="px-4 py-2 border border-gray-400 hover:border-gray-200 col-span-full"
-              onClick={() => setView(null)}
-            >
-              Kembali
-            </button>
-          </div>
+        <ButtonSubscriber setSelectedSubscriber ={setSelectedSubscriber} setView={setView}/>
         )}
         {view === "publisher" && (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">

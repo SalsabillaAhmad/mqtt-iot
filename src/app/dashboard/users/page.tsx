@@ -5,6 +5,7 @@ import { subscriberOptions } from "@/app/hooks/subscriberOptions";
 import { useDeviceManager } from "@/app/hooks/useDeviceManager";
 import NavbarUser from "@/component/NavbarUser/page";
 import React from "react";
+import AddButtons from "@/component/AddButtons";
 
 export default function UsersDashboard() {
   const {
@@ -20,20 +21,7 @@ export default function UsersDashboard() {
       <NavbarUser />
       <main className="p-6">
         {!view && (
-          <div className="space-x-4 mb-4">
-            <button
-              className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-green-500"
-              onClick={() => setView("subscriber")}
-            >
-              Add Subscriber
-            </button>
-            <button
-              className="px-4 py-2 bg-blue-400 text-white rounded hover:bg-green-500"
-              onClick={() => setView("publisher")}
-            >
-              Add Publisher
-            </button>
-          </div>
+      <AddButtons setView={setView}/>
         )}
         {view === "subscriber" && (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
